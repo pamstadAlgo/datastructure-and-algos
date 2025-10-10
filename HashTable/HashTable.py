@@ -51,8 +51,16 @@ class HashTable:
         """
         Returns true if the item is in the hash table, false otherwise
         """
-        pass
+        # once we hit a None we are sure item is not in hash table
+        hash_index = self.modulos_hash_function(item)
 
+        for i in range(hash_index, self.size):
+            if self.hash_table[i] is None:
+                return False
+            elif self.hash_table[i] == item:
+                return True
+            
+        return False
 
 
 ht = HashTable()
@@ -64,3 +72,10 @@ ht.put(1)
 ht.put(21)
 
 print(ht)
+
+print(ht.get(20)) # expect true
+print(ht.get(1)) # expect true
+print(ht.get(21)) # expect true
+print(ht.get(60)) # expect false
+print(ht.get(53)) # expect true
+print(ht.get(13)) # expect false
