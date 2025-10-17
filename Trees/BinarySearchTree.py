@@ -34,7 +34,7 @@ class BinarySearchTree:
            
 
 
-            if value < current_node.value:
+            if key < current_node.key:
                 # check if we are at leaf node
                 if current_node.left is None:
                     #insert new leaft node
@@ -42,7 +42,7 @@ class BinarySearchTree:
                 else:
                     #if no leaf node keep searching
                     self.insert(key=key, value=value, current_node=current_node.left)
-            elif value > current_node.value:
+            elif key > current_node.key:
                 #check if we are at leaf node
                 if current_node.right is None:
                     #insert new leaf node
@@ -51,6 +51,9 @@ class BinarySearchTree:
                     #if no leaf node keep search
                     self.insert(key=key, value=value, current_node=current_node.right)
     
+            else:
+                #if the same key replace the value
+                current_node.value = value
 
     def print_tree(self, node=None, level=0):
         """
